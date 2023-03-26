@@ -5,5 +5,13 @@
 #
 from PIL import Image
 
+
+#source_folder = r'C:\Users\CO\AppData\Local\Temp'
+#for item in os.listdir(source_folder):
+
+
 music_sheet_img = Image.open('musicsheet/bad_apple_musicsheet.png')
 music_sheet_img.show()
+
+
+#C:\Users\CO\AppData\Local\Temp\tmp[random 8 caractères].PNG
