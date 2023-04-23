@@ -93,19 +93,43 @@ def match(template_image_path, music_sheet_path):
     corr = cv2.matchTemplate(no_line_sheet, template_image,
                              cv2.TM_CCOEFF_NORMED)
 
-    print(corr[322][403])
-
     # Specify a threshold
     threshold = 0.63
 
     # Store the coordinates of matched area in a numpy array
     loc = np.where(corr >= threshold)
-    print(loc)
     # Draw a rectangle around the matched region.
     for pt in zip(*loc[::-1]):
         cv2.rectangle(no_line_sheet, pt, (pt[0] + template_image.shape[1], pt[1] + template_image.shape[0]), 255, 1)
 
-    display_image("no line sheet", no_line_sheet)
+    # display_image("no line sheet", no_line_sheet)
+
+    return loc, corr
+
+
+def sort_location(loc, corr, close_distance):
+    note_loc_list_x = [loc[0][0]]
+    note_loc_list_y = [loc[1][0]]
+    for x, y in zip(loc[0], loc[1]):
+        note_counter = 0
+        for assigned_x, assigned_y in zip(note_loc_list_x, note_loc_list_y):
+            note_counter += 1
+            # If close to another already found note
+            if assigned_x + close_distance > x > assigned_x - close_distance and assigned_y + close_distance > y > assigned_y - close_distance:
+
+                if corr[x, y] > corr[assigned_x, assigned_y]:
+                    note_loc_list_x[note_loc_list_x.index(assigned_x)] = x
+                    note_loc_list_y[note_loc_list_y.index(assigned_y)] = y
+
+                break
+
+            elif note_counter == len(note_loc_list_x):
+                note_loc_list_x.append(x)
+                note_loc_list_y.append(y)
+
+    note_loc_list = [note_loc_list_x, note_loc_list_y]
+
+    return note_loc_list
 
 
 bad_apple_sheet_path = 'musicsheet/bad_apple_musicsheet.png'
@@ -114,4 +138,27 @@ bad_apple_image = cv2.imread(bad_apple_sheet_path)
 noire_img_path = 'solfege/note/noire.png'
 noire_contour, noire_img = create_contour(noire_img_path)
 
-match(noire_img_path, bad_apple_sheet_path)
+location, correlation = match(noire_img_path, bad_apple_sheet_path)
+sorted_loc = sort_location(location, correlation, 3)
+
+# Initialise both reference image (with its contour) and approximated image
+template_image_contour, template_image = create_contour(noire_img_path)
+music_sheet = cv2.imread(bad_apple_sheet_path)
+
+# Apply grayscale
+template_image = cv2.cvtColor(template_image, cv2.COLOR_BGR2GRAY)
+music_sheet = cv2.cvtColor(music_sheet, cv2.COLOR_BGR2GRAY)
+
+_, template_image = cv2.threshold(~template_image, 75, 255, 0)
+_, music_sheet = cv2.threshold(~music_sheet, 75, 255, 0)
+
+no_line_sheet = remove_lines(music_sheet)
+
+corr = cv2.matchTemplate(no_line_sheet, template_image,
+                             cv2.TM_CCOEFF_NORMED)
+
+# Draw a rectangle around the matched region.
+for pt in zip(*sorted_loc[::-1]):
+    cv2.rectangle(no_line_sheet, pt, (pt[0] + template_image.shape[1], pt[1] + template_image.shape[0]), 255, 1)
+
+display_image("no line sheet", no_line_sheet)
