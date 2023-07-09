@@ -33,7 +33,7 @@ class MSM_MainWindow(QMainWindow):
         self.instrument_file_name, _ = QFileDialog.getOpenFileName(self, "Open File", "", "All Files (*)")
 
         if self.instrument_file_name:
-            #fait un truc
+            # fait un truc
             if self.image_file_name:
                 self.ui.convertButton.setEnabled(True)
         else:

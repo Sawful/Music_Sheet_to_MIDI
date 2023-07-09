@@ -17,7 +17,6 @@ def display_image(window_name, img):
 
 
 def threshold_image(image, thresh_min):
-
     # converting image into grayscale image
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -28,20 +27,17 @@ def threshold_image(image, thresh_min):
 
 
 def create_contour(img_path):
-
     image = cv2.imread(img_path)
 
     threshold = threshold_image(image, 200)
 
     # using a findContours() function
-    contours_image, _ = cv2.findContours(
-        threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours_image, _ = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     return contours_image[1], image
 
 
 def extract_lines(thresh_img):
-
     """
     thresh_img: threshold image in which you want to remove the lines.
     """
@@ -82,7 +78,6 @@ def extract_lines(thresh_img):
 
 
 def match(template_image_path, music_sheet_path, threshold):
-
     # Initialise both reference image (with its contour) and approximated image
     template_image_contour, template_image = create_contour(template_image_path)
     music_sheet = cv2.imread(music_sheet_path)
@@ -92,8 +87,7 @@ def match(template_image_path, music_sheet_path, threshold):
 
     no_line_sheet = extract_lines(music_sheet)[0]
 
-    corr = cv2.matchTemplate(no_line_sheet, template_image,
-                             cv2.TM_CCOEFF_NORMED)
+    corr = cv2.matchTemplate(no_line_sheet, template_image, cv2.TM_CCOEFF_NORMED)
 
     # Store the coordinates of matched area in a numpy array
     loc = np.where(corr >= threshold)
@@ -113,8 +107,10 @@ def sort_location(loc, corr, close_distance):
             for assigned_x, assigned_y in zip(note_loc_list_x, note_loc_list_y):
                 note_counter += 1
                 # If close to another already found note
-                if assigned_x + close_distance > x > assigned_x - close_distance and assigned_y + close_distance > y > assigned_y - close_distance:
-
+                if (
+                    assigned_x + close_distance > x > assigned_x - close_distance
+                    and assigned_y + close_distance > y > assigned_y - close_distance
+                ):
                     if corr[x, y] > corr[assigned_x, assigned_y]:
                         note_loc_list_x[note_loc_list_x.index(assigned_x)] = x
                         note_loc_list_y[note_loc_list_y.index(assigned_y)] = y
@@ -157,20 +153,21 @@ def sorted_match(template_image_path, music_sheet_path, threshold):
 
     return no_line_sheet
 
-bad_apple_sheet_path = 'musicsheet/bad_apple_musicsheet.png'
+
+bad_apple_sheet_path = "musicsheet/bad_apple_musicsheet.png"
 bad_apple_image = cv2.imread(bad_apple_sheet_path)
-all_my_trial_sheet_path ='musicsheet/all_my_trial_music_sheet.jpg'
+all_my_trial_sheet_path = "musicsheet/all_my_trial_music_sheet.jpg"
 all_my_trial_image = cv2.imread(all_my_trial_sheet_path)
-boilem_cabbage_down_path ='musicsheet/boilem-cabbage-down-piano-alphanotes-helper.jpg'
+boilem_cabbage_down_path = "musicsheet/boilem-cabbage-down-piano-alphanotes-helper.jpg"
 boilem_cabbage_down_image = cv2.imread(boilem_cabbage_down_path)
 
 # Initialise note types
-noire_img_path = 'solfege/note/noire.png'
-ronde_img_path = 'solfege/note/ronde.png'
-blanche_img_path = 'solfege/note/blanche.png'
-croche_img_path = 'solfege/note/croche.png'
-double_croche_img_path = 'solfege/note/double_croche.png'
-triple_croche_img_path = 'solfege/note/triple_croche.png'
+noire_img_path = "solfege/note/noire.png"
+ronde_img_path = "solfege/note/ronde.png"
+blanche_img_path = "solfege/note/blanche.png"
+croche_img_path = "solfege/note/croche.png"
+double_croche_img_path = "solfege/note/double_croche.png"
+triple_croche_img_path = "solfege/note/triple_croche.png"
 noire_contour, noire_img = create_contour(noire_img_path)
 ronde_contour, ronde_img = create_contour(ronde_img_path)
 blanche_contour, blanche_img = create_contour(blanche_img_path)

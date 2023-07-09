@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -137,15 +138,17 @@ class Ui_MainWindow(object):
         self.fileButton2.setText(_translate("MainWindow", "Select File"))
         self.convertButton.setText(_translate("MainWindow", "Convert File"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.baseImage), _translate("MainWindow", "Base Image"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.finishedImage), _translate("MainWindow", "Finished Image"))
+        self.tabWidget.setTabText(
+            self.tabWidget.indexOf(self.finishedImage), _translate("MainWindow", "Finished Image")
+        )
 
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
