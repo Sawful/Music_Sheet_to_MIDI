@@ -1,45 +1,78 @@
 from mido import MidiTrack, MidiFile, Message
+# todo: doc string pour la classe et les fonctions
+# output type
+# clean
 
 
-def create_note(note_height, note_delay, note_time):
-    return Message("note_on", note=note_height, time=note_delay), Message("note_off", note=note_height, time=note_time)
+class NoteToMidi:
+    def __init__(self, note_list: list = [], name: str = "new_song", file_path: str = "", show_note: bool = False):
+        self.note_list = note_list
+        self.name = name
+        self.track = MidiTrack()
+        self.show_note = show_note
+        mid = MidiFile()
+        mid.tracks.append(self.track)
+        self.add_note_to_track()
+        midi_file_path = name + ".mid" if file_path == "" else file_path + "/" + name + ".mid"
+        mid.save(midi_file_path)
 
+    @staticmethod
+    def create_note(note_height : int = 0, note_delay: int = 0, note_time: int = 0):
+        return Message("note_on", note=note_height, time=note_delay),\
+            Message("note_off", note=note_height, time=note_time)
 
-def add_note_to_track(track: MidiTrack, note_height: list, note_delay: list, note_time: list, name: str = ""):
-    track.name = name
+    def add_note_to_track(self):
+        self.track.name = self.name
 
-    if len(note_height) == len(note_delay) and len(note_height) == len(note_time):
-        for i in range(len(note_height)):
-            track.append(create_note(note_height[i], note_delay[i], note_time[i])[0])
-            track.append(create_note(note_height[i], note_delay[i], note_time[i])[1])
-            print(find_note(note_height[i]))
-    else:
-        raise ValueError("Lengths of all 3 parameter list are not the same")
-    return track
+        # Verify that all values are the correct type
+        for note in self.note_list:
+            if not isinstance(note[0], str):
+                raise ValueError(f"{note[0]} should be str")
+            if not isinstance(note[1], int) or not isinstance(note[2], int) or not isinstance(note[3], int):
+                raise ValueError(f"{note[1]}, {note[2]} and {note[3]},should all be int")
 
+        for i in range(len(self.note_list)):
+            height = self.find_height(self.note_list[i][0], self.note_list[i][1])
+            self.track.append(self.create_note(height, self.note_list[i][2], self.note_list[i][3])[0])
+            self.track.append(self.create_note(height, self.note_list[i][2], self.note_list[i][3])[1])
 
-def find_note(note):
-    note_list = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-    octave = 0
-    while note > 11:
-        note -= 12
-        octave += 1
-    note_name = note_list[note]
-    return "octave:" + str(octave) + " note:" + str(note) + " (" + str(note_name) + ")"
+        if self.show_note:
+            print(self._find_note())
 
+        # return self.track
 
-# todo: changer la fonction create_note pour qu'elle prenne en paramettre le nom et l'octave des notes
-# (et non pas le numéro de la hauteur)
+    @staticmethod
+    def find_height(note : str = "C", octave : int = 0)-> int:
+        note_list = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+        height = note_list.index(note) + 12 * octave
+        return height
+
+    def _find_note(self):
+        for i in range (1, len(self.track)):
+            if self.track[i].type != "note_off":
+                height = self.track[i].note
+                note_list = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+                octave = 0
+                while height > 11:
+                    height -= 12
+                    octave += 1
+                note_name = note_list[height]
+
+                print ("octave:" + str(octave) + " height:" + str(height) + " (" + str(note_name) + ")")
+
 
 if __name__ == "__main__":
-    mid = MidiFile()
-    piano_track = MidiTrack()
-    mid.tracks.append(piano_track)
+    list_note = [["C", 5, 0, 300],
+                 ["C#", 5, 0, 300],
+                 ["D", 5, 0, 300],
+                 ["D#", 5, 0, 300],
+                 ["E", 5, 0, 300],
+                 ["F", 5, 0, 300],
+                 ["F#", 5, 0, 300],
+                 ["G", 5, 0, 300],
+                 ["G#", 5, 0, 300],
+                 ["A", 5, 0, 300],
+                 ["A#", 5, 0, 300],
+                 ["B", 5, 0, 300]]
 
-    list_note_height = [63, 65, 66, 68, 70, 75, 73, 70]
-    list_note_delay = [0, 0, 0, 0, 0, 300, 0, 0]
-    list_note_time = [300, 300, 300, 300, 300, 300, 300, 300]
-
-    add_note_to_track(piano_track, list_note_height, list_note_delay, list_note_time)
-
-    mid.save("new_song.mid")
+    NoteToMidi1 = NoteToMidi(list_note, file_path="Midi_files")
