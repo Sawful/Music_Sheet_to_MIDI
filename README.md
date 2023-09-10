@@ -9,7 +9,7 @@ Status: Closed <br>
 ## Project Overview
 
 This project's primary objective was to create an [Optical Music Recognition program (OMR)](https://en.wikipedia.org/wiki/Optical_music_recognition) capable of generating a [Musical Instrument Digital Interface (MIDI)](https://en.wikipedia.org/wiki/MIDI) file from a scanned or photographed music sheet image. <br>
-https://github.com/Sawful/Music_Sheet_to_MIDI/blob/master/Midi_files/example.mp3 <br>
+ [example](/Midi_Files/example.mp3)<br>
 Currently, this program enables the MIDI file generation with the desired musical notes. <br>
 
 A basic user interface implemented with [pyQT5](https://en.wikipedia.org/wiki/PyQt) allows an intuitive computation. <br>
