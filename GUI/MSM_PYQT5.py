@@ -26,49 +26,67 @@ class Ui_MainWindow(object):
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.musicsheet_txt = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.musicsheet_txt.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.musicsheet_txt.sizePolicy().hasHeightForWidth()
+        )
         self.musicsheet_txt.setSizePolicy(sizePolicy)
         self.musicsheet_txt.setMinimumSize(QtCore.QSize(50, 25))
         self.musicsheet_txt.setObjectName("musicsheet_txt")
         self.verticalLayout.addWidget(self.musicsheet_txt)
         self.fileButton1 = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.fileButton1.sizePolicy().hasHeightForWidth())
         self.fileButton1.setSizePolicy(sizePolicy)
         self.fileButton1.setObjectName("fileButton1")
         self.verticalLayout.addWidget(self.fileButton1)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        spacerItem = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed
+        )
         self.verticalLayout.addItem(spacerItem)
         self.instrument_txt = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.instrument_txt.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.instrument_txt.sizePolicy().hasHeightForWidth()
+        )
         self.instrument_txt.setSizePolicy(sizePolicy)
         self.instrument_txt.setMinimumSize(QtCore.QSize(80, 30))
         self.instrument_txt.setObjectName("instrument_txt")
         self.verticalLayout.addWidget(self.instrument_txt)
         self.fileButton2 = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.fileButton2.sizePolicy().hasHeightForWidth())
         self.fileButton2.setSizePolicy(sizePolicy)
         self.fileButton2.setObjectName("fileButton2")
         self.verticalLayout.addWidget(self.fileButton2)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 50, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        spacerItem1 = QtWidgets.QSpacerItem(
+            20, 50, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed
+        )
         self.verticalLayout.addItem(spacerItem1)
         self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 3, 1)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setContentsMargins(10, 10, 10, 10)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.convertBar = QtWidgets.QProgressBar(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.convertBar.sizePolicy().hasHeightForWidth())
@@ -79,10 +97,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.convertBar)
         self.convertButton = QtWidgets.QPushButton(self.centralwidget)
         self.convertButton.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.convertButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.convertButton.sizePolicy().hasHeightForWidth()
+        )
         self.convertButton.setSizePolicy(sizePolicy)
         self.convertButton.setMinimumSize(QtCore.QSize(0, 0))
         self.convertButton.setObjectName("convertButton")
@@ -97,10 +119,14 @@ class Ui_MainWindow(object):
         self.gridLayout_3 = QtWidgets.QGridLayout(self.baseImage)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.musicsheet_image = QtWidgets.QLabel(self.baseImage)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.musicsheet_image.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.musicsheet_image.sizePolicy().hasHeightForWidth()
+        )
         self.musicsheet_image.setSizePolicy(sizePolicy)
         self.musicsheet_image.setMinimumSize(QtCore.QSize(200, 200))
         self.musicsheet_image.setText("")
@@ -137,9 +163,13 @@ class Ui_MainWindow(object):
         self.instrument_txt.setText(_translate("MainWindow", "MIDI Instrument"))
         self.fileButton2.setText(_translate("MainWindow", "Select File"))
         self.convertButton.setText(_translate("MainWindow", "Convert File"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.baseImage), _translate("MainWindow", "Base Image"))
         self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.finishedImage), _translate("MainWindow", "Finished Image")
+            self.tabWidget.indexOf(self.baseImage),
+            _translate("MainWindow", "Base Image"),
+        )
+        self.tabWidget.setTabText(
+            self.tabWidget.indexOf(self.finishedImage),
+            _translate("MainWindow", "Finished Image"),
         )
 
 
