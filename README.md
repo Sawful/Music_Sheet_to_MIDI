@@ -3,13 +3,17 @@
 **MusicSheetToMIDI is an incomplete project and was my very first python coding experience.**
 
 Started on: 19/03/2023 <br>
-Finished on: 10/09/2023 <br>
+Finished on: 16/09/2023 <br>
 Status: Closed <br>
 
 ## Project Overview
 
 This project's primary objective was to create an [Optical Music Recognition program (OMR)](https://en.wikipedia.org/wiki/Optical_music_recognition) capable of generating a [Musical Instrument Digital Interface (MIDI)](https://en.wikipedia.org/wiki/MIDI) file from a scanned or photographed music sheet image. <br>
 Currently, this program enables the MIDI file generation with the desired musical notes. <br>
+
+
+https://github.com/Sawful/Music_Sheet_to_MIDI/assets/110816158/a50a4a32-bba5-4dd4-8ef4-c060b6eb9d9d
+
 
 A basic user interface implemented with [pyQT5](https://en.wikipedia.org/wiki/PyQt) allows an intuitive computation. <br>
 While those functionalities have their merits, progress on the project was hindered by the absence of a reliable method to recognize and interpret different musical notes on the input music sheet. <br>
