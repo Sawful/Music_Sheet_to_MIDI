@@ -3,7 +3,7 @@
 **MusicSheetToMIDI is an incomplete project and was my very first python coding experience.**
 
 Started on: 19/03/2023 <br>
-Finished on: 16/09/2023 <br>
+Finished on: 24/09/2023 <br>
 Status: Closed <br>
 
 ## Project Overview
@@ -32,6 +32,6 @@ This project has provided valuable learning experiences /5⭐ such as:
 - **Image recognition** ⭐: Even though this part does not figure into the project, I learnt and tried different methods to identify an object in a picture.
 - **Object-Oriented Programming** ⭐⭐: I learned in this project how to code in classes and definitions.
 - **Debugging with PyCharm** ⭐⭐: I became familiar with using the PyCharm debugger, including setting breakpoints for efficient debugging.
-- **Code Formatting** ⭐⭐⭐: I got familiar with code formatting practices (pep8)[https://peps.python.org/pep-0008/] using ["black”](https://github.com/psf/black) to ensure cleaner and more consistent code.
+- **Code Formatting** ⭐⭐⭐: I got familiar with code formatting practices [pep8](https://peps.python.org/pep-0008/) using ["black”](https://github.com/psf/black) to ensure cleaner and more consistent code.
 - **GitHub Usage** ⭐⭐: I learned how to create and manage a GitHub repository, including the creation of a README file.
 - **Git Version Control** ⭐⭐⭐: I acquired skills in using [GitKraken](https://www.gitkraken.com) to perform Git operations such as pulling, committing, and pushing changes to a repository. As well as ignoring file modification (.gitignore) and cloning a repo.
